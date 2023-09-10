@@ -35,7 +35,7 @@ const Shop: FC = () => {
     dispatch(changeSearchValue(e.currentTarget.value));
   };
 
-  const handlePriceChange = (event: Event, newValue: number | number[]) => {
+  const handlePriceChange = (_event: Event, newValue: number | number[]) => {
     setPriceFilter(newValue as number);
   };
 

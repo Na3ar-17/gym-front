@@ -28,7 +28,7 @@ const LeftMenuDrawer: React.FC<LeftMenuDrawerProps> = ({
   email,
   fullName,
 }) => {
-  const list = (anchor: Anchor) => (
+  const list = (_anchor: Anchor) => (
     <div role="presentation" onClick={onClose} onKeyDown={onClose}>
       <List>
         {[
