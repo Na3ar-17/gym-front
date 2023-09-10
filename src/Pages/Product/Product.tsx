@@ -1,8 +1,7 @@
-import React, { FC, useState, useEffect, useRef } from "react";
+import { FC, useState, useEffect } from "react";
 import styles from "./Product.module.scss";
 import Header from "../../Components/Header/Header";
-import { Container, Rating, Button } from "@mui/material";
-import image from "../../../public/images/product.png";
+import { Container } from "@mui/material";
 
 import Footer from "../../Components/Footer/Footer";
 import ProductContent from "../../Components/ProductContent/ProductContent";

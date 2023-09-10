@@ -7,19 +7,16 @@ import Shop from "./Pages/Shop/Shop";
 import Product from "./Pages/Product/Product";
 import Pricing from "./Pages/Pricing/Pricing";
 import Profile from "./Pages/Profile/Profile";
-import { fetchAuthMe, selectIsAuth } from "./Redux/Slices/authSlice";
+import { fetchAuthMe } from "./Redux/Slices/authSlice";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import LeftMenuDrawer from "./Components/LeftMenuDrawer/LeftMenuDrawer";
 import { IUserData } from "./Interfaces/UserData";
 import { closeDrawer } from "./Redux/Slices/appSlice";
 import Settings from "./Pages/Settings/Settings";
-import Test from "./Pages/Test/Test";
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.auth.data) as IUserData;
-  const isAuth = useAppSelector((state) => selectIsAuth(state));
-  const { myGoods } = useAppSelector((state) => state.myGoods);
 
   useEffect(() => {
     dispatch(fetchAuthMe());
@@ -47,7 +44,6 @@ const App: FC = () => {
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/shop-item/:id" element={<Product />} />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/test" element={<Test />} />
           <Route
             path="/profile"
             element={<Profile toggleDrawer={toggleDrawer} />}

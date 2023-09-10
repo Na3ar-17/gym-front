@@ -12,15 +12,11 @@ import Training from "../Training/Training";
 import TimeTable from "../TimeTable/TimeTable";
 import Trainers from "../Trainers/Trainers";
 import Footer from "../../Components/Footer/Footer";
-import { useAppSelector } from "../../hooks/hooks";
-import { selectIsAuth } from "../../Redux/Slices/authSlice";
 import Loader from "../../Components/Loader/Loader";
 
 const images = [image, image2, image3];
 
 const Home: FC = () => {
-  const isAuth = useAppSelector((state) => selectIsAuth(state));
-
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [nextImageIndex, setNextImageIndex] = useState<number>(1);
 

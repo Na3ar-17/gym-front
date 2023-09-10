@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../../Components/Header/Header";
 import styles from "./Login.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";

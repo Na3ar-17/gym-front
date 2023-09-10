@@ -1,22 +1,14 @@
 import { FC, useState } from "react";
 import styles from "./Header.module.scss";
-import {
-  AppBar,
-  Badge,
-  BadgeProps,
-  Container,
-  IconButton,
-} from "@mui/material";
+import { AppBar, Container } from "@mui/material";
 import lightLogo from "../../../public/images/Light-logo.png";
 import darkLogo from "../../../public/images/Dark-logo.png";
 import PersonIcon from "@mui/icons-material/Person";
-import { styled } from "@mui/material/styles";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IHeaderMode } from "../../Interfaces/HeaderMode";
 import { Link } from "react-router-dom";
 import TopMenuDrawer from "../TopMenuDrawer/TopMenuDrawer";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { useAppSelector } from "../../hooks/hooks";
 import { selectIsAuth } from "../../Redux/Slices/authSlice";
 import AvatarComponent from "../Avatar/AvatarComponent";
 import { IUserData } from "../../Interfaces/UserData";
@@ -24,15 +16,6 @@ import { IUserData } from "../../Interfaces/UserData";
 const Header: FC<IHeaderMode> = ({ isDark }) => {
   const isAuth = useAppSelector((state) => selectIsAuth(state));
   const data = useAppSelector((state) => state.auth.data) as IUserData;
-
-  const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
-    "& .MuiBadge-badge": {
-      right: -4,
-      top: 0,
-      border: `2px solid ${theme.palette.background.paper}`,
-      padding: "0 4px",
-    },
-  }));
 
   const [topMenuOpen, setTopMenuOpen] = useState(false);
 

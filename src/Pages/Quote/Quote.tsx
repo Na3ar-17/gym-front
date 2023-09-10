@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from "./Quote.module.scss";
 import image1 from "../../../public/images/girls.jpg";
 import image2 from "../../../public/images/man-on-bike.jpg";

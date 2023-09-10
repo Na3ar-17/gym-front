@@ -3,10 +3,7 @@ import styles from "./ProfileBody.module.scss";
 import ShopCard from "../../Components/ShopCard/ShopCard";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { IUserData } from "../../Interfaces/UserData";
-import {
-  fetchDeleteMyGoodsByUserId,
-  fetchMyGoods,
-} from "../../Redux/Slices/myGoodsSlice";
+import { fetchMyGoods } from "../../Redux/Slices/myGoodsSlice";
 import { imgLink } from "../../links";
 import Progres from "../Progres/Progres";
 import { Button } from "@mui/material";

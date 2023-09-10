@@ -1,15 +1,14 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./Settings.module.scss";
 import { Button, IconButton, Tooltip } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { logOut, selectIsAuth } from "../../Redux/Slices/authSlice";
+import { useAppSelector } from "../../hooks/hooks";
+import { selectIsAuth } from "../../Redux/Slices/authSlice";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IToggleDrawer } from "../../Interfaces/Drawer";
 import AvatarComponent from "../../Components/Avatar/AvatarComponent";
 import { IUserData } from "../../Interfaces/UserData";
 import Footer from "../../Components/Footer/Footer";
-import Loader from "../../Components/Loader/Loader";
 import ModalWindow from "../../Components/ModalWindow/ModalWindow";
 
 const Settings: FC<IToggleDrawer> = ({ toggleDrawer }) => {
@@ -23,7 +22,6 @@ const Settings: FC<IToggleDrawer> = ({ toggleDrawer }) => {
       navigate("/login");
     }
   }, [data]);
-  const dispatch = useAppDispatch();
   const handleLogOut = () => {
     setModalOpen(true);
   };

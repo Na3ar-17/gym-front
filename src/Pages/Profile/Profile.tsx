@@ -9,7 +9,6 @@ import { selectIsAuth } from "../../Redux/Slices/authSlice";
 import { useNavigate } from "react-router-dom";
 import { IToggleDrawer } from "../../Interfaces/Drawer";
 import { IUserData } from "../../Interfaces/UserData";
-import Loader from "../../Components/Loader/Loader";
 
 const Profile: FC<IToggleDrawer> = ({ toggleDrawer }) => {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC } from "react";
 import styles from "./SocialMedia.module.scss";
 import { Instagram, Twitter, Facebook } from "@mui/icons-material";
 import { ISocilaMedia } from "../../Interfaces/SocilaMedia";

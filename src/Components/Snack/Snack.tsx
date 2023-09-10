@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
@@ -19,19 +18,6 @@ interface ISnackBar {
 }
 
 const Snack: React.FC<ISnackBar> = ({ isOpen, onClose, text, type }) => {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
   return (
     <Stack spacing={2} sx={{ width: "100%" }}>
       <Snackbar open={isOpen} autoHideDuration={6000} onClose={onClose}>

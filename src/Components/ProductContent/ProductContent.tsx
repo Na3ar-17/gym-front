@@ -1,6 +1,5 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 import styles from "./ProductContent.module.scss";
-import image from "../../../public/images/product.png";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Rating, Button } from "@mui/material";

@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
 import { Container } from "@mui/material";
 import styles from "./Shop.module.scss";
-import { Button, Slider, TextField } from "@mui/material";
+import { Slider, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Footer from "../../Components/Footer/Footer";
 import Pagination from "@mui/material/Pagination";
@@ -17,16 +17,12 @@ import {
   fetchSortByCategory,
   clearSortedCards,
 } from "../../Redux/Slices/ShopItemsSlice";
-import { IUserData } from "../../Interfaces/UserData";
-import Loader from "../../Components/Loader/Loader";
 
 const Shop: FC = () => {
   const { shopCards, status, searchValue, categories, sortedCards } =
     useAppSelector((state) => state.shopItems);
   const [priceFilter, setPriceFilter] = useState(10);
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => state.auth.data) as IUserData;
-  const userId = data ? data.id : null;
   const isShopCardsLoaded: boolean = status == "pending";
   const [currentCategory, setCurrentCategory] = useState<string>("All");
 

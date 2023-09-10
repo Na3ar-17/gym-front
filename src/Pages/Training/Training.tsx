@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from "./Training.module.scss";
 import image1 from "../../../public/images/training1.jpg";
 import image2 from "../../../public/images/training2.jpg";

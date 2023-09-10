@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import styles from "./ShopCard.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { IShopCard } from "../../Interfaces/ShopCard";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
   fetchAddMyGoods,
@@ -19,7 +19,6 @@ const ShopCard: FC<IShopCard> = ({ img, category, name, price, id }) => {
   const [isOpen, setOpen] = useState(false);
   const [currentType, setCurrentType] = useState<"success" | "info">("success");
   const [snackText, setSnackText] = useState<string>("Item added to profile");
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.auth.data) as IUserData;
   const userId = data ? data.id : null;

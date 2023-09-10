@@ -1,7 +1,6 @@
-import React from "react";
 import styles from "./Footer.module.scss";
 import image1 from "../../../public/images/Light-logo.png";
-import { Container, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { Instagram, Twitter, Facebook, YouTube } from "@mui/icons-material";
 
 const Footer = () => {
