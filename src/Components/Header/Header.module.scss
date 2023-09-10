@@ -1,0 +1,116 @@
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 94px;
+  max-width: 1370px;
+  margin: 0 auto;
+  border-bottom: 2px solid black;
+
+  .active {
+    width: 100%;
+  }
+
+  .logo {
+    width: 150px;
+    img {
+      width: 55px;
+      height: 48px;
+      cursor: pointer;
+    }
+  }
+
+  .navBar {
+    ul {
+      display: flex;
+      gap: 50px;
+      li {
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: -1px;
+          width: 0%;
+          height: 3px;
+          background-color: #1976d2;
+          transition: all 0.2s;
+        }
+
+        &:hover::before {
+          width: 100%;
+        }
+        p {
+          color: #fff;
+          font-size: 16px;
+          font-family: var(--font-family);
+          font-weight: 700;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+
+        .dark {
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .user {
+    width: 150px;
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      li {
+        .menuIcon {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .content {
+    .navBar {
+      ul {
+        li {
+          p {
+            color: #fff;
+            font-size: 14px;
+            font-family: var(--font-family);
+            font-weight: 700;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .navBar {
+    display: none;
+  }
+  .content {
+    .user {
+      ul {
+        li {
+          .avatarComponent,
+          .personIcon,
+          .iconButton {
+            display: none;
+          }
+          .menuIcon {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

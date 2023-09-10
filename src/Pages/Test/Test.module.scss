@@ -1,0 +1,54 @@
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+}
+
+.card {
+  font-family: var(--font-family);
+  border-radius: 25px;
+  max-width: 450px;
+  border-left: 3px solid rgba(104, 104, 142, 1);
+  border-top: 3px solid rgba(104, 104, 142, 1);
+  -webkit-box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
+  -moz-box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
+  box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    .image {
+      img {
+        width: 100%;
+      }
+    }
+
+    .utils {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      .cardName {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        .name {
+          font-size: 20px;
+          font-weight: 600;
+        }
+        .category {
+          text-transform: uppercase;
+        }
+      }
+
+      .buyInfo {
+        display: flex;
+        justify-content: space-between;
+        .price {
+          font-size: 18px;
+          font-weight: 600;
+        }
+        .buyIcon {
+        }
+      }
+    }
+  }
+}

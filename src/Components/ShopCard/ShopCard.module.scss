@@ -1,0 +1,399 @@
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+}
+.card {
+  max-width: 470px;
+  height: 622px;
+  border-radius: 20px;
+  border-left: 3px solid rgba(104, 104, 142, 1);
+  border-top: 3px solid rgba(104, 104, 142, 1);
+  -webkit-box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
+  -moz-box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
+  box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
+
+  .content {
+    font-family: var(--font-family);
+    padding: 40px;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .image {
+      max-width: 100%;
+      height: 405px;
+      position: relative;
+      overflow: hidden;
+      img {
+        max-width: 98%;
+        display: block;
+        margin: 0 auto;
+        transition: all 0.4s ease-in-out;
+        cursor: pointer;
+      }
+    }
+
+    .footer {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin-top: 50px;
+      .category {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #000;
+      }
+
+      .name {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .buy {
+        max-width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .price {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .image {
+      img {
+        transform: scale(1.04);
+      }
+    }
+  }
+}
+
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+}
+
+@media screen and (max-width: 650px) {
+  .card {
+    max-width: 470px;
+    height: 550px;
+    border-radius: 5px;
+
+    .content {
+      font-family: var(--font-family);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      .image {
+        max-width: 100%;
+        height: 340px;
+        position: relative;
+        overflow: hidden;
+        img {
+          max-width: 98%;
+          display: block;
+          margin: 0 auto;
+          transition: all 0.4s ease-in-out;
+          cursor: pointer;
+        }
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-top: 50px;
+        .category {
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #000;
+        }
+
+        .name {
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        .buy {
+          max-width: 100%;
+          display: flex;
+          justify-content: space-between;
+          .price {
+            font-size: 18px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .image {
+        img {
+          transform: scale(1.04);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .shopCards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1070px;
+    .card {
+      max-width: 470px;
+      height: 480px;
+      border-radius: 5px;
+
+      .content {
+        font-family: var(--font-family);
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        .image {
+          max-width: 100%;
+          height: 260px;
+          position: relative;
+          overflow: hidden;
+          img {
+            max-width: 98%;
+            display: block;
+            margin: 0 auto;
+            transition: all 0.4s ease-in-out;
+            cursor: pointer;
+          }
+        }
+
+        .footer {
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+          margin-top: 50px;
+          .category {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #000;
+          }
+
+          .name {
+            font-size: 18px;
+            font-weight: 600;
+          }
+
+          .buy {
+            max-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .price {
+              font-size: 18px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .image {
+          img {
+            transform: scale(1.04);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .card {
+    max-width: 470px;
+    height: 440px;
+    border-radius: 5px;
+
+    .content {
+      font-family: var(--font-family);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      .image {
+        max-width: 100%;
+        position: relative;
+        overflow: hidden;
+        height: 254px;
+        img {
+          max-width: 98%;
+          display: block;
+          margin: 0 auto;
+          transition: all 0.4s ease-in-out;
+          cursor: pointer;
+        }
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        .category {
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #000;
+        }
+
+        .name {
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        .buy {
+          max-width: 100%;
+          display: flex;
+          justify-content: space-between;
+          .price {
+            font-size: 18px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .image {
+        img {
+          transform: scale(1.04);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .card {
+    max-width: 470px;
+    height: 370px;
+    border-radius: 5px;
+
+    .content {
+      font-family: var(--font-family);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      height: 336px;
+      .image {
+        max-width: 100%;
+        position: relative;
+        overflow: hidden;
+        img {
+          max-width: 98%;
+          display: block;
+          margin: 0 auto;
+          transition: all 0.4s ease-in-out;
+          cursor: pointer;
+        }
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        .category {
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #000;
+        }
+
+        .name {
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        .buy {
+          max-width: 100%;
+          display: flex;
+          justify-content: space-between;
+          .price {
+            font-size: 18px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .image {
+        img {
+          transform: scale(1.04);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .card {
+    max-width: 470px;
+    height: 300px;
+    border-radius: 5px;
+
+    .content {
+      font-family: var(--font-family);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      height: 280px;
+      .image {
+        max-width: 100%;
+        position: relative;
+        overflow: hidden;
+        img {
+          max-width: 98%;
+          display: block;
+          margin: 0 auto;
+          transition: all 0.4s ease-in-out;
+          cursor: pointer;
+          margin-top: -30px;
+        }
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        .category {
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #000;
+        }
+
+        .name {
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        .buy {
+          max-width: 100%;
+          display: flex;
+          justify-content: space-between;
+          .price {
+            font-size: 18px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .image {
+        img {
+          transform: scale(1.04);
+        }
+      }
+    }
+  }
+}

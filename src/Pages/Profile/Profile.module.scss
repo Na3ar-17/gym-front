@@ -1,0 +1,15 @@
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+}
+
+.container {
+  font-family: var(--font-family);
+  margin-bottom: 200px;
+  padding: 40px;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+}

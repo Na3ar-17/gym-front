@@ -1,0 +1,54 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 270px;
+  height: 480px;
+
+  .imgBox {
+    position: relative;
+    overflow: hidden;
+    height: 390px;
+    .img {
+      width: 100%;
+      height: 100%;
+      transition: all 1s ease-out;
+    }
+  }
+
+  p:not(.title) {
+    color: #b7b7b7;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: var(--font-family);
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      background-color: #1976d2;
+      display: inline-block;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin: 0 10px 0 10px;
+    }
+  }
+
+  .title {
+    color: #fff;
+    font-size: 24px;
+    font-family: var(--font-family);
+    font-weight: 600;
+  }
+
+  .underline {
+    width: 100%;
+    height: 2px;
+    background-color: rgb(79, 79, 79);
+    position: relative;
+  }
+
+  &:hover .img {
+    transform: scale(1.04);
+  }
+}

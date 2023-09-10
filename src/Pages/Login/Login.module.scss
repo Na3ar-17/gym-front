@@ -1,0 +1,39 @@
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+}
+
+.container {
+  background-color: #fff;
+  height: 90vh;
+  margin-top: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  font-family: var(--font-family);
+
+  .title {
+    font-size: 58px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .input {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .container {
+    .title {
+      text-align: center;
+      font-size: 40px;
+    }
+    .form {
+      padding: 12px;
+      .button {
+        width: 190px;
+        height: 40px;
+      }
+    }
+  }
+}

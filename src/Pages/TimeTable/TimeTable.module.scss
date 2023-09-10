@@ -1,0 +1,85 @@
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+}
+
+.container {
+  background-color: #000;
+  color: #fff;
+  font-family: var(--font-family);
+
+  .title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-top: 180px;
+    text-align: center;
+  }
+
+  .table {
+    width: 100%;
+    .box {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 50px;
+
+      .dayNAme {
+        color: #989898;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .rows {
+        padding-top: 30px;
+        div {
+          border-top: 1px solid #3d3d3d;
+          min-height: 50px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 5px;
+
+          .text {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+          }
+          .time {
+            color: #989898;
+            font-size: 14px;
+            font-weight: 600;
+          }
+        }
+
+        div:last-child {
+          border-bottom: 1px solid #3d3d3d;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    .title {
+      font-size: 3.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .container {
+    .title {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 448px) {
+  .container {
+    .title {
+      font-size: 2rem;
+    }
+  }
+}

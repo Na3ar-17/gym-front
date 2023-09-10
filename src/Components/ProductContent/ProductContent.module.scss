@@ -1,0 +1,308 @@
+.content {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  .card {
+    width: 520px;
+    height: 520px;
+    border-left: 3px solid rgba(104, 104, 142, 1);
+    border-top: 3px solid rgba(104, 104, 142, 1);
+    -webkit-box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
+    -moz-box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
+    box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .cardInfo {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .title {
+      text-transform: uppercase;
+      font-size: 62px;
+      font-weight: 700;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .text {
+      font-size: 18px;
+      font-weight: 600;
+      max-width: 500px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      max-width: 400px;
+
+      .btnCount {
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 500;
+        background-color: #e3e3df;
+        width: 180px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .content {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .content {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    .card {
+      width: 400px;
+      height: 320px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        max-width: 85%;
+      }
+    }
+
+    .cardInfo {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      .title {
+        text-transform: uppercase;
+        font-size: 40px;
+        font-weight: 700;
+      }
+
+      .price {
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .text {
+        font-size: 17px;
+        font-weight: 600;
+        max-width: 500px;
+        text-align: center;
+      }
+
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        max-width: 400px;
+        gap: 20px;
+
+        .btnCount {
+          cursor: pointer;
+          font-size: 20px;
+          font-weight: 500;
+          background-color: #e3e3df;
+          width: 150px;
+          height: 54px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+        }
+
+        .buttonAdd {
+          width: 150px;
+          height: 54px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .content {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    .card {
+      width: 300px;
+      height: 310px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        max-width: 85%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 380px) {
+  .content {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    .card {
+      width: 300px;
+      height: 310px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        max-width: 85%;
+      }
+    }
+
+    .cardInfo {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+      .title {
+        text-transform: uppercase;
+        font-size: 25px;
+        font-weight: 700;
+      }
+
+      .price {
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .text {
+        font-size: 17px;
+        font-weight: 600;
+        max-width: 500px;
+      }
+
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        max-width: 400px;
+        gap: 20px;
+
+        .btnCount {
+          cursor: pointer;
+          font-size: 20px;
+          font-weight: 500;
+          background-color: #e3e3df;
+          width: 150px;
+          height: 54px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+        }
+
+        .buttonAdd {
+          width: 150px;
+          height: 54px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 330px) {
+  .content {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    .card {
+      width: 240px;
+      height: 290px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        max-width: 110%;
+      }
+    }
+
+    .cardInfo {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+      .title {
+        text-transform: uppercase;
+        font-size: 25px;
+        font-weight: 700;
+      }
+
+      .price {
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .text {
+        font-size: 17px;
+        font-weight: 600;
+        max-width: 500px;
+      }
+
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        max-width: 400px;
+        gap: 20px;
+
+        .btnCount {
+          cursor: pointer;
+          font-size: 20px;
+          font-weight: 500;
+          background-color: #e3e3df;
+          width: 150px;
+          height: 54px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+        }
+
+        .buttonAdd {
+          width: 150px;
+          height: 54px;
+        }
+      }
+    }
+  }
+}

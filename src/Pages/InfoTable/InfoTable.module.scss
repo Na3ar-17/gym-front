@@ -1,0 +1,75 @@
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+}
+
+.container {
+  background-color: #e7dede;
+  padding-top: 200px;
+  .table {
+    display: flex;
+    gap: 10px;
+    .box {
+      width: 290px;
+      height: 240px;
+      text-align: center;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: var(--font-family);
+      border: 2px solid black;
+      border-radius: 5px;
+
+      .number {
+        font-size: 78px;
+        font-weight: 600;
+      }
+
+      .text {
+        font-size: 12px;
+        font-weight: 600;
+        padding-top: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    .table {
+      .box {
+        height: 154px;
+        .number {
+          font-size: 60px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .container {
+    .table {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      .box {
+        height: 154px;
+        .number {
+          font-size: 60px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .container {
+    .table {
+      .box {
+        width: 220px;
+      }
+    }
+  }
+}
