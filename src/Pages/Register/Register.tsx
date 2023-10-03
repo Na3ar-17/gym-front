@@ -7,9 +7,14 @@ import Footer from "../../Components/Footer/Footer";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchRegistration, selectIsAuth } from "../../Redux/Slices/authSlice";
 import { Link, Navigate } from "react-router-dom";
+import { setSnackOpen, setSnackText } from "../../Redux/Slices/appSlice";
+import { useState } from "react";
+
 const Register = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => selectIsAuth(state));
+  const [fullNameError, setFullNameError] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -18,9 +23,24 @@ const Register = () => {
   } = useForm<TypeRegister>({
     mode: "onChange",
   });
+  const setSnackData = () => {
+    dispatch(setSnackOpen());
+    dispatch(setSnackText("Registration successful"));
+  };
 
   const onSubmit: SubmitHandler<TypeRegister> = async (values) => {
-    const data = await dispatch(fetchRegistration(values));
+    const fullName = values.fullName || "";
+
+    if (!/^(\S+\s{1}\S+)$/.test(fullName)) {
+      setFullNameError(
+        "Full Name should contain exactly two words separated by one space"
+      );
+      return;
+    }
+
+    const data = await dispatch(
+      fetchRegistration({ ...values, fullName: fullName.trim() })
+    );
     if (!data.payload) {
       return alert("Registration error");
     }
@@ -30,7 +50,7 @@ const Register = () => {
     }
 
     reset();
-    location.reload();
+    setSnackData();
   };
 
   if (isAuth) {
@@ -56,15 +76,13 @@ const Register = () => {
                   sx={{ width: "100%", fontSize: "22px" }}
                   {...register("email", { required: true })}
                 />
-                {errors.email ? (
+                {errors.email && (
                   <Alert
                     sx={{ marginTop: "15px", maxWidth: "250px" }}
                     severity="error"
                   >
                     Please enter your Email
                   </Alert>
-                ) : (
-                  ""
                 )}
               </div>
               <div className={styles.input}>
@@ -76,7 +94,7 @@ const Register = () => {
                   sx={{ width: "100%", fontSize: "42px" }}
                   {...register("password", { required: true })}
                 />
-                {errors.password ? (
+                {errors.password && (
                   <Alert
                     sx={{ marginTop: "15px", maxWidth: "250px" }}
                     severity="error"
@@ -84,8 +102,6 @@ const Register = () => {
                     {" "}
                     Please enter your Password
                   </Alert>
-                ) : (
-                  ""
                 )}
               </div>
               <div className={styles.input}>
@@ -97,15 +113,21 @@ const Register = () => {
                   sx={{ width: "100%", fontSize: "22px" }}
                   {...register("fullName", { required: true })}
                 />
-                {errors.fullName ? (
+                {errors.fullName && (
                   <Alert
                     sx={{ marginTop: "15px", maxWidth: "250px" }}
                     severity="error"
                   >
                     Please enter your Full Name
                   </Alert>
-                ) : (
-                  ""
+                )}
+                {fullNameError && (
+                  <Alert
+                    sx={{ marginTop: "15px", maxWidth: "250px" }}
+                    severity="error"
+                  >
+                    {fullNameError}
+                  </Alert>
                 )}
               </div>
               <Button

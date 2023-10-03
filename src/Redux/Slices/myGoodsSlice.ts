@@ -23,8 +23,12 @@ export const fetchMyGoods = createAsyncThunk(
 export const fetchAddMyGoods = createAsyncThunk(
   "myGoods/fetchAddMyGoods",
   async (params: IMyGoodsData) => {
-    const { data } = await axios.post("/add-product", params);
-    return data;
+    try {
+      const { data } = await axios.post("/add-product", params);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
 export const fetchDeleteMyGoodsByUserId = createAsyncThunk(

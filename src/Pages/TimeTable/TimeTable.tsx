@@ -1,21 +1,35 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./TimeTable.module.scss";
 import { Container } from "@mui/material";
 import TimeTableRows from "../../Components/TimeTableRows/TimeTableRows";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchTimeTableData } from "../../Redux/Slices/TimeTableSlice";
 import Progres from "../../Components/Progres/Progres";
+import Footer from "../../Components/Footer/Footer";
+import Header from "../../Components/Header/Header";
+import Loader from "../../Components/Loader/Loader";
+interface ITimeTable {
+  isFooter: boolean;
+  isHeader: boolean;
+  isLoader: boolean;
+}
 
-const TimeTable: FC = () => {
+const TimeTable: FC<ITimeTable> = ({ isFooter, isHeader, isLoader }) => {
   const { timeTableData, status } = useAppSelector((state) => state.timeTable);
   const dispatch = useAppDispatch();
   const isTimeTableDataLoaded: boolean = status == "pending";
+  const [isLoading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     dispatch(fetchTimeTableData());
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, []);
   return (
     <>
+      {isLoader && <Loader isLoading={isLoading} />}
+      {isHeader && <Header isDark={false} />}
       <div className={styles.container}>
         <Container
           sx={{
@@ -57,6 +71,7 @@ const TimeTable: FC = () => {
           </div>
         </Container>
       </div>
+      {isFooter && <Footer />}
     </>
   );
 };

@@ -13,12 +13,26 @@ import TimeTable from "../TimeTable/TimeTable";
 import Trainers from "../Trainers/Trainers";
 import Footer from "../../Components/Footer/Footer";
 import Loader from "../../Components/Loader/Loader";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import Snack from "../../Components/Snack/Snack";
+import { setSnackOpen } from "../../Redux/Slices/appSlice";
+import { Link } from "react-router-dom";
 
 const images = [image, image2, image3];
 
 const Home: FC = () => {
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [isSnackLoaded, setSnackLoaded] = useState<boolean>(false);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [nextImageIndex, setNextImageIndex] = useState<number>(1);
+  const { isSnackOpen, snackText, snackType } = useAppSelector(
+    (state) => state.app
+  );
+  const dispatch = useAppDispatch();
+
+  const closeSnack = () => {
+    dispatch(setSnackOpen());
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,11 +44,10 @@ const Home: FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const [isLoading, setLoading] = useState<boolean>(true);
-
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
+      setSnackLoaded(true);
     }, 1500);
     AOS.init({
       duration: 400,
@@ -67,21 +80,31 @@ const Home: FC = () => {
         <div className={styles.content} data-aos="fade-right">
           <h1>Best program for best results</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          <Button
-            data-aos="fade-up"
-            className={styles.button}
-            variant="contained"
-            sx={{ "&:hover": { boxShadow: "none", transition: "all 0.5s" } }}
-          >
-            Read more
-          </Button>
+          <Link to="/contact-us">
+            <Button
+              data-aos="fade-up"
+              className={styles.button}
+              variant="contained"
+              sx={{ "&:hover": { boxShadow: "none", transition: "all 0.5s" } }}
+            >
+              Read more
+            </Button>
+          </Link>
         </div>
       </div>
+      {isSnackLoaded && (
+        <Snack
+          isOpen={isSnackOpen}
+          text={snackText}
+          type={snackType}
+          onClose={closeSnack}
+        />
+      )}
       <Programs />
       <InfoTable />
       <Training />
-      <TimeTable />
-      <Trainers />
+      <TimeTable isFooter={false} isHeader={false} isLoader={false} />
+      <Trainers isFooter={false} isHeader={false} isLoader={false} />
       <Footer />
     </>
   );

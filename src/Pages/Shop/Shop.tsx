@@ -16,19 +16,38 @@ import {
   fetchCategories,
   fetchSortByCategory,
   clearSortedCards,
+  setCurrentCategory,
+  changeCurrentPage,
 } from "../../Redux/Slices/ShopItemsSlice";
+import Loader from "../../Components/Loader/Loader";
 
 const Shop: FC = () => {
-  const { shopCards, status, searchValue, categories, sortedCards } =
-    useAppSelector((state) => state.shopItems);
+  const {
+    shopCards,
+    status,
+    searchValue,
+    categories,
+    sortedCards,
+    currentCategory,
+  } = useAppSelector((state) => state.shopItems);
   const [priceFilter, setPriceFilter] = useState(10);
   const dispatch = useAppDispatch();
   const isShopCardsLoaded: boolean = status == "pending";
-  const [currentCategory, setCurrentCategory] = useState<string>("All");
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const { totalPages, pageSize, currentPage } = useAppSelector(
+    (state) => state.shopItems
+  );
 
   useEffect(() => {
-    dispatch(fetchShopItems());
+    dispatch(fetchShopItems({ currentPage, pageSize }));
     dispatch(fetchCategories());
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [currentPage, pageSize]);
+
+  useEffect(() => {
+    dispatch(changeCurrentPage(1));
   }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,15 +60,22 @@ const Shop: FC = () => {
 
   const handleSort = (category: string) => {
     dispatch(fetchSortByCategory(category));
-    setCurrentCategory(category);
+    dispatch(setCurrentCategory(category));
   };
+
   const handleClear = () => {
-    dispatch(clearSortedCards()), setCurrentCategory("All");
+    dispatch(clearSortedCards()), dispatch(setCurrentCategory("All"));
   };
-  console.log(sortedCards);
+
+  const changePage = (_event: React.ChangeEvent<unknown>, newPage: number) => {
+    dispatch(changeCurrentPage(newPage));
+  };
+
+  const sortedCardslength = sortedCards.length > 0;
 
   return (
     <>
+      <Loader isLoading={isLoading} />
       <Header isDark={true} />
       <Container maxWidth="xl">
         <div className={styles.container}>
@@ -172,7 +198,12 @@ const Shop: FC = () => {
           )}
         </div>
         <div className={styles.pagination}>
-          <Pagination count={2} color="primary" />
+          <Pagination
+            disabled={sortedCardslength}
+            onChange={changePage}
+            count={totalPages}
+            color="primary"
+          />
         </div>
       </Container>
       <Footer />

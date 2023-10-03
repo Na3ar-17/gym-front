@@ -1,0 +1,42 @@
+.user {
+  transition: all 0.3s;
+  &:hover {
+    transform: translateY(-5px);
+  }
+  width: 311px;
+  height: 60px;
+  background-color: rgb(203, 203, 204);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: 15px;
+  padding: 5px;
+  cursor: pointer;
+
+  .userData {
+    .userName {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .userEmail {
+      font-size: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .user {
+    width: 270px;
+    .userData {
+      .userName {
+        font-size: 17px;
+        font-weight: 600;
+      }
+
+      .userEmail {
+        font-size: 13px;
+      }
+    }
+  }
+}

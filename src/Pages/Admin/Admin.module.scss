@@ -1,0 +1,181 @@
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+}
+.container {
+  font-family: var(--font-family);
+  padding: 40px;
+
+  .content {
+    padding: 50px 50px;
+    .utils {
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 10px;
+      height: 60px;
+      align-items: center;
+      margin-bottom: 10px;
+      .title {
+        font-size: 30px;
+        font-weight: 600;
+      }
+      .searchInput {
+      }
+    }
+
+    .usersTable {
+      overflow-y: scroll;
+      height: 240px;
+      background-color: #222;
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .noUserFound {
+        font-size: 25px;
+        color: #fff;
+      }
+    }
+
+    .userInfo {
+      // min-height: 20vh;
+      margin-top: 20px;
+      border: 4px solid #565656;
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .preview {
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .userData {
+        .info {
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          .userAvatar {
+            display: grid;
+            place-items: center;
+          }
+
+          .userName {
+            font-size: 22px;
+            font-weight: 600;
+          }
+
+          .userEmail {
+            font-size: 17px;
+            font-weight: 600;
+          }
+
+          .userGoods {
+            font-size: 18px;
+            font-weight: 600;
+          }
+        }
+
+        .userGoods {
+          margin-top: 30px;
+          .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+
+            .noGoods {
+              font-size: 17px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .container {
+    .content {
+      .userInfo {
+        .preview {
+          font-size: 21px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    .content {
+      .utils {
+        .title {
+          font-size: 24 px;
+        }
+      }
+      .usersTable {
+        width: 100%;
+      }
+      .userInfo {
+        .preview {
+          font-size: 21px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 435px) {
+  .container {
+    padding: 5px;
+    .content {
+      padding: 50px 30px;
+      .utils {
+        .title {
+          font-size: 20px;
+        }
+      }
+      .usersTable {
+        width: 100%;
+      }
+      .userInfo {
+        .preview {
+          font-size: 21px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 360px) {
+  .container {
+    padding: 5px;
+    .content {
+      padding: 50px 20px;
+      .utils {
+        .title {
+          font-size: 20px;
+        }
+      }
+      .usersTable {
+        width: 100%;
+      }
+      .userInfo {
+        .preview {
+          font-size: 21px;
+        }
+      }
+    }
+  }
+}

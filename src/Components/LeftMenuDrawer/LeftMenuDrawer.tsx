@@ -10,8 +10,11 @@ import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../hooks/hooks";
+import { selectIsAdmin } from "../../Redux/Slices/adminSlice";
 
 type Anchor = "left";
 
@@ -28,6 +31,8 @@ const LeftMenuDrawer: React.FC<LeftMenuDrawerProps> = ({
   email,
   fullName,
 }) => {
+  const isAdmin = useAppSelector((state) => selectIsAdmin(state));
+
   const list = (_anchor: Anchor) => (
     <div role="presentation" onClick={onClose} onKeyDown={onClose}>
       <List>
@@ -38,16 +43,21 @@ const LeftMenuDrawer: React.FC<LeftMenuDrawerProps> = ({
             link: "/profile",
           },
           {
-            text: "Settings",
-            icon: <SettingsIcon />,
-            link: "/profile/settings",
-          },
-          {
             text: "Shop",
             icon: <ShoppingBagIcon />,
             link: "/shop",
           },
           { text: "Home", icon: <HomeIcon />, link: "/" },
+          {
+            text: "Settings",
+            icon: <SettingsIcon />,
+            link: "/profile/settings",
+          },
+          {
+            text: "Admin",
+            icon: <AdminPanelSettingsIcon />,
+            link: isAdmin ? "/admin" : "/admin-login",
+          },
         ].map(({ text, icon, link }) => (
           <ListItem key={text} disablePadding>
             <ListItemButton component={Link} to={link}>
@@ -92,7 +102,10 @@ const LeftMenuDrawer: React.FC<LeftMenuDrawerProps> = ({
           <div className={styles.profileContent}>
             <div className={styles.card}>
               <div className={styles.content}>
-                <Avatar className={styles.avatar} {...stringAvatar(fullName)} />
+                <Avatar
+                  className={styles.avatar}
+                  {...stringAvatar(fullName.trim())}
+                />
                 <p className={styles.email}>{email}</p>
               </div>
             </div>

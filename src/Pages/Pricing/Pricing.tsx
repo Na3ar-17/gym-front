@@ -1,12 +1,29 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./Pricing.module.scss";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import { Button } from "@mui/material";
+import Loader from "../../Components/Loader/Loader";
+import ModalWindow from "../../Components/ModalWindow/ModalWindow";
 
 const Pricing: FC = () => {
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [isOpen, setOpen] = useState<boolean>(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  const comingSoon = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
   return (
     <>
+      <Loader isLoading={isLoading} />
       <Header isDark={true} />
       <div className={styles.container}>
         <div className={styles.cards}>
@@ -27,7 +44,14 @@ const Pricing: FC = () => {
                   <li className={styles.hide}>Nutrition program</li>
                 </ol>
               </div>
-              <Button variant="contained">Purchase Now</Button>
+              <Button
+                onClick={() => {
+                  comingSoon();
+                }}
+                variant="contained"
+              >
+                Purchase Now
+              </Button>
             </div>
           </div>
           <div className={styles.card}>
@@ -47,7 +71,14 @@ const Pricing: FC = () => {
                   <li className={styles.hide}>Nutrition program</li>
                 </ol>
               </div>
-              <Button variant="contained">Purchase Now</Button>
+              <Button
+                onClick={() => {
+                  comingSoon();
+                }}
+                variant="contained"
+              >
+                Purchase Now
+              </Button>
             </div>
           </div>
           <div className={styles.card}>
@@ -67,11 +98,26 @@ const Pricing: FC = () => {
                   <li>Nutrition program</li>
                 </ol>
               </div>
-              <Button variant="contained">Purchase Now</Button>
+              <Button
+                onClick={() => {
+                  comingSoon();
+                }}
+                variant="contained"
+              >
+                Purchase Now
+              </Button>
             </div>
           </div>
         </div>
       </div>
+      <ModalWindow
+        btnStyle="primary"
+        btnText="Ok"
+        isOpen={isOpen}
+        onClose={onClose}
+        title="Coming soon"
+        type="comingSoon"
+      />
       <Footer />
     </>
   );

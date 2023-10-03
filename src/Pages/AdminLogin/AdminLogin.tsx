@@ -1,28 +1,17 @@
+import { FC } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import styles from "./AdminLogin.module.scss";
 import Header from "../../Components/Header/Header";
-import styles from "./Login.module.scss";
-import { useForm, SubmitHandler } from "react-hook-form";
+import Footer from "../../Components/Footer/Footer";
 import { TypeLogin } from "../../Types/Login";
 import { Alert, Button, Container, TextField } from "@mui/material";
-import Footer from "../../Components/Footer/Footer";
-import { fetchLogin, selectIsAuth } from "../../Redux/Slices/authSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { Link, Navigate } from "react-router-dom";
+import { fetchLoginAdmin, selectIsAdmin } from "../../Redux/Slices/adminSlice";
+import { Navigate } from "react-router-dom";
 import { setSnackOpen, setSnackText } from "../../Redux/Slices/appSlice";
-import ModalWindow from "../../Components/ModalWindow/ModalWindow";
-import { useState } from "react";
-
-const Login = () => {
-  const isAuth = useAppSelector((state) => selectIsAuth(state));
+const AdminLogin: FC = () => {
+  const isAdmin = useAppSelector((state) => selectIsAdmin(state));
   const dispatch = useAppDispatch();
-  const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
   const {
     register,
     handleSubmit,
@@ -31,43 +20,37 @@ const Login = () => {
   } = useForm<TypeLogin>({
     mode: "onChange",
   });
+
   const setSnackData = () => {
     dispatch(setSnackOpen());
-    dispatch(setSnackText("Login successful"));
+    dispatch(setSnackText("Welcome to Admin account"));
   };
 
   const onSubmit: SubmitHandler<TypeLogin> = async (values) => {
-    const data = await dispatch(fetchLogin(values));
+    const data = await dispatch(fetchLoginAdmin(values));
+
     if (!data.payload) {
-      openModal();
       reset();
-      return;
+      alert("Error");
     }
 
-    if ("token" in data.payload) {
-      window.localStorage.setItem("token", data.payload.token);
+    if ("adminToken" in data.payload) {
+      window.localStorage.setItem("adminToken", data.payload.adminToken);
     }
-    reset();
+
     setSnackData();
+    reset();
   };
-  if (isAuth) {
+
+  if (isAdmin) {
     return <Navigate to="/" />;
   }
   return (
     <>
-      <ModalWindow
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        type="errorAuth"
-        btnStyle="error"
-        btnText="Ok"
-        title="Error Login"
-      />
       <Header isDark={true} />
-
       <div className={styles.container}>
         <Container maxWidth="lg">
-          <p className={styles.title}>Login</p>
+          <p className={styles.title}>Admin </p>
 
           <div className={styles.form}>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -79,17 +62,16 @@ const Login = () => {
                   sx={{ width: "100%", fontSize: "22px" }}
                   {...register("email", { required: true })}
                 />
-                {errors.email ? (
+                {errors.email && (
                   <Alert
                     sx={{ marginTop: "15px", maxWidth: "250px" }}
                     severity="error"
                   >
-                    Please enter your Email
+                    Please enter Email
                   </Alert>
-                ) : (
-                  ""
                 )}
               </div>
+
               <div className={styles.input}>
                 <TextField
                   id="standard-basic"
@@ -98,37 +80,31 @@ const Login = () => {
                   sx={{ width: "100%", fontSize: "42px" }}
                   {...register("password", { required: true })}
                 />
-                {errors.password ? (
+                {errors.password && (
                   <Alert
                     sx={{ marginTop: "15px", maxWidth: "250px" }}
                     severity="error"
                   >
-                    {" "}
-                    Please enter your Password
+                    Please enter Password
                   </Alert>
-                ) : (
-                  ""
                 )}
               </div>
+
               <Button
                 className={styles.button}
                 type="submit"
-                sx={{ marginTop: "50px", width: "200px", height: "50px" }}
+                sx={{ marginTop: "20px", width: "200px", height: "50px" }}
                 variant="contained"
               >
                 Log In
               </Button>
             </form>
-            <Link to="/register">
-              <p style={{ marginTop: "30px" }}>Dont have account?</p>
-            </Link>
           </div>
         </Container>
       </div>
-
       <Footer />
     </>
   );
 };
 
-export default Login;
+export default AdminLogin;

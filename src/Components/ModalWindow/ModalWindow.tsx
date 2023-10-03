@@ -9,12 +9,21 @@ import { logOut } from "../../Redux/Slices/authSlice";
 import { IUserData } from "../../Interfaces/UserData";
 import { useNavigate } from "react-router-dom";
 import styles from "./ModalWindow.module.scss";
+import { logOutAdmin } from "../../Redux/Slices/adminSlice";
 
 interface IModalWindwo {
   isOpen: boolean;
   onClose: () => void;
-  title: string;
-  type: "deleteMyGoods" | "logOut" | "notAuth";
+  title: string | null;
+  type:
+    | "deleteMyGoods"
+    | "logOut"
+    | "notAuth"
+    | "comingSoon"
+    | "errorAuth"
+    | "imageError"
+    | "fileNotImage"
+    | "deleteShopItem";
   btnText: string;
   btnStyle: "error" | "primary";
 }
@@ -36,9 +45,9 @@ const ModalWindow: FC<IModalWindwo> = ({
     onClose();
   };
 
-  const logOutUser = () => {
+  const logOutData = () => {
     dispatch(logOut());
-    location.reload();
+    dispatch(logOutAdmin());
   };
 
   const goTologin = () => {
@@ -73,10 +82,22 @@ const ModalWindow: FC<IModalWindwo> = ({
                   handleDeleteMyGoods(userId !== null ? userId : 0);
                   break;
                 case "logOut":
-                  logOutUser();
+                  logOutData();
                   break;
                 case "notAuth":
                   goTologin();
+                  break;
+                case "comingSoon":
+                  onClose();
+                  break;
+                case "errorAuth":
+                  onClose();
+                  break;
+                case "imageError":
+                  onClose();
+                  break;
+                case "fileNotImage":
+                  onClose();
                   break;
                 default:
                   break;

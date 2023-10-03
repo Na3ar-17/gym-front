@@ -8,18 +8,16 @@ import { useAppSelector } from "../../hooks/hooks";
 import { selectIsAuth } from "../../Redux/Slices/authSlice";
 import { useNavigate } from "react-router-dom";
 import { IToggleDrawer } from "../../Interfaces/Drawer";
-import { IUserData } from "../../Interfaces/UserData";
 
 const Profile: FC<IToggleDrawer> = ({ toggleDrawer }) => {
   const navigate = useNavigate();
   const isAuth = useAppSelector((state) => selectIsAuth(state));
-  const data = useAppSelector((state) => state.auth.data) as IUserData;
 
   useEffect(() => {
     if (!isAuth) {
       navigate("/login");
     }
-  }, [data]);
+  }, [isAuth]);
 
   return (
     <>

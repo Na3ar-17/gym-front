@@ -2,8 +2,11 @@ import styles from "./Footer.module.scss";
 import image1 from "../../../public/images/Light-logo.png";
 import { Button } from "@mui/material";
 import { Instagram, Twitter, Facebook, YouTube } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { FC } from "react";
 
-const Footer = () => {
+const Footer: FC = () => {
+  const navigate = useNavigate();
   return (
     <>
       <footer className={styles.footer}>
@@ -24,6 +27,7 @@ const Footer = () => {
                   color: "#fff",
                 }}
                 variant="contained"
+                onClick={() => navigate("/time-table")}
               >
                 Start exercising
               </Button>

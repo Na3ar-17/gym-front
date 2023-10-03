@@ -10,6 +10,17 @@
   -webkit-box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
   -moz-box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
   box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
+  position: relative;
+
+  .deleteIcon {
+    top: 12px;
+    left: 12px;
+    font-size: 28px;
+    position: absolute;
+    color: red;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
 
   .content {
     font-family: var(--font-family);
@@ -356,7 +367,7 @@
           margin: 0 auto;
           transition: all 0.4s ease-in-out;
           cursor: pointer;
-          margin-top: -30px;
+          margin-top: -10px;
         }
       }
 

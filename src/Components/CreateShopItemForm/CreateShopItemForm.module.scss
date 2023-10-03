@@ -1,0 +1,77 @@
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+}
+
+.container {
+  font-family: var(--font-family);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 100px;
+
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .form {
+    .imgPreview {
+      display: flex;
+      justify-content: center;
+      .image {
+        width: 200px;
+      }
+    }
+    width: 430px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    .inputs {
+      .input {
+        width: 100%;
+      }
+    }
+    .buttons {
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    font-family: var(--font-family);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 100px;
+
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .form {
+      .imgPreview {
+        display: flex;
+        justify-content: center;
+        .image {
+          width: 200px;
+        }
+      }
+      width: 370px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 20px;
+      .inputs {
+        .input {
+          width: 100%;
+        }
+      }
+      .buttons {
+      }
+    }
+  }
+}

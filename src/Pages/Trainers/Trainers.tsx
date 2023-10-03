@@ -1,22 +1,37 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./Trainers.module.scss";
 import TrainersCard from "../../Components/TrainersCard/TrainersCard";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchTrainers } from "../../Redux/Slices/TrainersSlice";
 import Progres from "../../Components/Progres/Progres";
 import { imgLink } from "../../links";
-const Trainers: FC = () => {
+import Footer from "../../Components/Footer/Footer";
+import Header from "../../Components/Header/Header";
+import Loader from "../../Components/Loader/Loader";
+
+interface ITrainers {
+  isHeader: boolean;
+  isFooter: boolean;
+  isLoader: boolean;
+}
+const Trainers: FC<ITrainers> = ({ isFooter, isHeader, isLoader }) => {
   const { trainersCard, status } = useAppSelector((state) => state.trainers);
   const dispatch = useAppDispatch();
+  const [isLoading, setLoading] = useState<boolean>(true);
 
   const isTrainersCardLoaded: boolean = status == "pending";
 
   useEffect(() => {
     dispatch(fetchTrainers());
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
   }, []);
 
   return (
     <>
+      {isLoader && <Loader isLoading={isLoading} />}
+      {isHeader && <Header isDark={false} />}
       <div className={styles.box}>
         <div className={styles.headerText}>
           <h1>MEET THE PROS</h1>
@@ -43,6 +58,7 @@ const Trainers: FC = () => {
           )}
         </div>
       </div>
+      {isFooter && <Footer />}
     </>
   );
 };

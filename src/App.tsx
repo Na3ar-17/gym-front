@@ -13,6 +13,12 @@ import LeftMenuDrawer from "./Components/LeftMenuDrawer/LeftMenuDrawer";
 import { IUserData } from "./Interfaces/UserData";
 import { closeDrawer } from "./Redux/Slices/appSlice";
 import Settings from "./Pages/Settings/Settings";
+import TimeTable from "./Pages/TimeTable/TimeTable";
+import Trainers from "./Pages/Trainers/Trainers";
+import ContactUs from "./Pages/ContactUs/ContactUs";
+import AdminLogin from "./Pages/AdminLogin/AdminLogin";
+import { fetchGetAdmin } from "./Redux/Slices/adminSlice";
+import Admin from "./Pages/Admin/Admin";
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +26,7 @@ const App: FC = () => {
 
   useEffect(() => {
     dispatch(fetchAuthMe());
+    dispatch(fetchGetAdmin());
   }, []);
 
   const toggleDrawer = () => {
@@ -39,8 +46,21 @@ const App: FC = () => {
         />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route
+            path="/time-table"
+            element={
+              <TimeTable isFooter={true} isHeader={true} isLoader={true} />
+            }
+          />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/our-team"
+            element={
+              <Trainers isFooter={true} isHeader={true} isLoader={true} />
+            }
+          />
           <Route path="/register" element={<Register />} />
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/shop-item/:id" element={<Product />} />
           <Route path="/pricing" element={<Pricing />} />
@@ -51,6 +71,12 @@ const App: FC = () => {
           <Route
             path="/profile/settings"
             element={<Settings toggleDrawer={toggleDrawer} />}
+          />
+
+          <Route path="/admin-login" element={<AdminLogin />} />
+          <Route
+            path="/admin"
+            element={<Admin toggleDrawer={toggleDrawer} />}
           />
         </Routes>
       </BrowserRouter>

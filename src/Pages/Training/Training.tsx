@@ -1,12 +1,22 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./Training.module.scss";
 import image1 from "../../../public/images/training1.jpg";
 import image2 from "../../../public/images/training2.jpg";
 import image3 from "../../../public/images/training3.jpg";
 import image4 from "../../../public/images/training4.jpg";
 import { Button } from "@mui/material";
+import ModalWindow from "../../Components/ModalWindow/ModalWindow";
 
 const Training: FC = () => {
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -19,7 +29,11 @@ const Training: FC = () => {
                 Lorem ipsum dolor sit amet, consec tetur adipi scing elit.
                 Quisque eget augue ante, sed bibend umigula.
               </p>
-              <Button sx={{ width: "122px" }} variant="outlined">
+              <Button
+                onClick={() => openModal()}
+                sx={{ width: "122px" }}
+                variant="outlined"
+              >
                 Read more
               </Button>
             </div>
@@ -36,7 +50,11 @@ const Training: FC = () => {
                 Lorem ipsum dolor sit amet, consec tetur adipi scing elit.
                 Quisque eget augue ante, sed bibend umigula.
               </p>
-              <Button sx={{ width: "122px" }} variant="outlined">
+              <Button
+                onClick={() => openModal()}
+                sx={{ width: "122px" }}
+                variant="outlined"
+              >
                 Read more
               </Button>
             </div>
@@ -56,7 +74,11 @@ const Training: FC = () => {
                   Lorem ipsum dolor sit amet, consec tetur adipi scing elit.
                   Quisque eget augue ante, sed bibend umigula.
                 </p>
-                <Button sx={{ width: "122px" }} variant="outlined">
+                <Button
+                  onClick={() => openModal()}
+                  sx={{ width: "122px" }}
+                  variant="outlined"
+                >
                   Read more
                 </Button>
               </div>
@@ -72,7 +94,11 @@ const Training: FC = () => {
                   Lorem ipsum dolor sit amet, consec tetur adipi scing elit.
                   Quisque eget augue ante, sed bibend umigula.
                 </p>
-                <Button sx={{ width: "122px" }} variant="outlined">
+                <Button
+                  onClick={() => openModal()}
+                  sx={{ width: "122px" }}
+                  variant="outlined"
+                >
                   Read more
                 </Button>
               </div>
@@ -80,6 +106,14 @@ const Training: FC = () => {
           </div>
         </div>
       </div>
+      <ModalWindow
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        type="comingSoon"
+        title="Coming Soon"
+        btnStyle="primary"
+        btnText="Ok"
+      />
     </>
   );
 };

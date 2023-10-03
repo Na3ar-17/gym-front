@@ -95,9 +95,31 @@
 
 .pagination {
   display: flex;
-  width: 152px;
   justify-content: center;
   margin: 50px auto;
+}
+
+@media screen and (max-width: 1300px) {
+  .container {
+    .shopCards {
+      max-width: 700px;
+    }
+  }
+}
+@media screen and (max-width: 1060px) {
+  .container {
+    .shopCards {
+      max-width: 600px;
+    }
+  }
+}
+@media screen and (max-width: 950px) {
+  .container {
+    padding: 50px 10px;
+    .shopCards {
+      max-width: 600px;
+    }
+  }
 }
 
 @media screen and (max-width: 870px) {

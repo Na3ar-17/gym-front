@@ -1,0 +1,276 @@
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+  --text-color: #989898;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: #000;
+  color: #fff;
+  font-family: var(--font-family);
+  padding-top: 250px;
+  padding-bottom: 200px;
+
+  .content {
+    .headerBox {
+      max-width: 1200px;
+      padding: 5px;
+      .title {
+        p {
+          font-size: 62px;
+          font-weight: 700;
+        }
+      }
+      .cards {
+        margin-top: 60px;
+        display: flex;
+        gap: 100px;
+        .card {
+          max-width: 250px;
+
+          .icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+          }
+          .city {
+            font-size: 24px;
+            font-weight: 600;
+          }
+          .infoText {
+            font-size: 18px;
+            color: var(--text-color);
+            font-weight: 600;
+            margin-top: 15px;
+          }
+        }
+      }
+    }
+
+    .footerBox {
+      margin-top: 150px;
+      .sides {
+        display: flex;
+        justify-content: space-between;
+        .contact {
+          width: 500px;
+          .title {
+            p {
+              font-size: 62px;
+              font-weight: 700;
+              color: #fff;
+            }
+          }
+
+          .info {
+            margin-top: 20px;
+            p {
+              font-size: 18px;
+              color: var(--text-color);
+              font-weight: 600;
+              word-spacing: 2px;
+            }
+          }
+          .list {
+            margin-top: 50px;
+            margin-left: 16px;
+            ul {
+              position: relative;
+              margin-bottom: 12px;
+              &::before {
+                content: "";
+                position: absolute;
+                background-color: #1976d2;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                left: -15px;
+                bottom: 7px;
+              }
+
+              li {
+                color: var(--text-color);
+                font-size: 18px;
+                font-weight: 600;
+              }
+            }
+          }
+        }
+
+        .form {
+          //   background-color: #fff;
+          padding: 10px;
+          width: 500px;
+          border-radius: 10px;
+          .inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            .label {
+              font-weight: 600;
+              color: var(--text-color);
+            }
+            .input {
+              background-color: rgb(104, 103, 103);
+              color: var(--text-color);
+              border-radius: 5px;
+            }
+
+            .button {
+              height: 40px;
+              max-width: 250px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container {
+    .content {
+      .headerBox {
+        .title {
+          p {
+            font-size: 58px;
+            font-weight: 700;
+          }
+        }
+      }
+
+      .footerBox {
+        .sides {
+          .contact {
+            .title {
+              p {
+                font-size: 58px;
+              }
+            }
+
+            .info {
+              p {
+                font-size: 17px;
+                line-height: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .container {
+    .content {
+      .headerBox {
+        .title {
+          p {
+            font-size: 58px;
+            font-weight: 700;
+            text-align: center;
+          }
+        }
+
+        .cards {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+
+      .footerBox {
+        .sides {
+          flex-wrap: wrap;
+          .contact {
+            margin-bottom: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .container {
+    .content {
+      .headerBox {
+        .title {
+          p {
+            font-size: 45px;
+            font-weight: 700;
+          }
+        }
+      }
+
+      .footerBox {
+        .sides {
+          flex-wrap: wrap;
+          .contact {
+            margin-bottom: 40px;
+            .title {
+              p {
+                font-size: 58px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 360px) {
+  .container {
+    .content {
+      .headerBox {
+        .title {
+          p {
+            font-size: 35px;
+            font-weight: 700;
+          }
+        }
+
+        .cards {
+          .card {
+            .city {
+              font-size: 22px;
+            }
+
+            .icon {
+              font-size: 35px;
+            }
+
+            .infoText {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+
+      .footerBox {
+        .sides {
+          flex-wrap: wrap;
+          .contact {
+            margin-bottom: 40px;
+            .title {
+              p {
+                font-size: 35px;
+              }
+            }
+
+            .info {
+              font-size: 16px;
+            }
+
+            .list {
+              ul {
+                li {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

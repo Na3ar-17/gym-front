@@ -20,7 +20,7 @@ interface ISnackBar {
 const Snack: React.FC<ISnackBar> = ({ isOpen, onClose, text, type }) => {
   return (
     <Stack spacing={2} sx={{ width: "100%" }}>
-      <Snackbar open={isOpen} autoHideDuration={6000} onClose={onClose}>
+      <Snackbar open={isOpen} autoHideDuration={3000} onClose={onClose}>
         <Alert onClose={onClose} severity={type} sx={{ width: "100%" }}>
           {text}
         </Alert>

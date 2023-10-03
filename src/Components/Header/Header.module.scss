@@ -60,9 +60,10 @@
   }
 
   .user {
-    width: 150px;
+    width: 200px;
     ul {
       display: flex;
+      gap: 50px;
       align-items: center;
       justify-content: space-between;
 
@@ -75,10 +76,32 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1020px) {
+  .content {
+    .logo {
+      width: 80px;
+    }
+    .navBar {
+      ul {
+        gap: 40px;
+        li {
+          p {
+            color: #fff;
+            font-size: 14px;
+            font-family: var(--font-family);
+            font-weight: 700;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1090px) {
   .content {
     .navBar {
       ul {
+        gap: 40px;
         li {
           p {
             color: #fff;
@@ -93,13 +116,15 @@
   }
 }
 
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 1000px) {
   .navBar {
     display: none;
   }
   .content {
     .user {
       ul {
+        gap: 20px;
+        justify-content: center;
         li {
           .avatarComponent,
           .personIcon,
