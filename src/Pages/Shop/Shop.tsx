@@ -30,7 +30,7 @@ const Shop: FC = () => {
     sortedCards,
     currentCategory,
   } = useAppSelector((state) => state.shopItems);
-  const [priceFilter, setPriceFilter] = useState(10);
+  const [priceFilter, setPriceFilter] = useState(0);
   const dispatch = useAppDispatch();
   const isShopCardsLoaded: boolean = status == "pending";
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -167,7 +167,7 @@ const Shop: FC = () => {
                     aria-label="Default"
                     valueLabelDisplay="auto"
                     onChange={handlePriceChange}
-                    min={10}
+                    min={0}
                     max={300}
                   />
                 </div>

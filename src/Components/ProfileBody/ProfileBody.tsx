@@ -8,6 +8,7 @@ import { imgLink } from "../../links";
 import Progres from "../Progres/Progres";
 import { Button } from "@mui/material";
 import ModalWindow from "../ModalWindow/ModalWindow";
+import Snack from "../Snack/Snack";
 
 const ProfileBody: FC = () => {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);

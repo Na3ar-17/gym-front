@@ -1,29 +1,42 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect, FC } from "react";
 import styles from "./CreateShopItemForm.module.scss";
-import { Alert, Button, TextField } from "@mui/material";
+import { Alert, Button, IconButton, TextField, Tooltip } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "../../axiosAdmin";
 import { imgLink } from "../../links";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import ModalWindow from "../ModalWindow/ModalWindow";
+import { useAppSelector } from "../../hooks/hooks";
+import { selectIsAuth } from "../../Redux/Slices/authSlice";
+import MenuIcon from "@mui/icons-material/Menu";
+import Snack from "../Snack/Snack";
 
 type TypeShopItem = {
-  name: string;
-  category: string;
-  price: number;
-  raiting: number;
-  info: string;
-  img: File;
+  name?: string;
+  category?: string;
+  price?: number;
+  raiting?: number;
+  info?: string;
+  img?: File;
 };
 
-const CreateShopItemForm = () => {
+interface CreateShopItemForm {
+  toggleDrawer?: () => void;
+}
+
+const CreateShopItemForm: FC<CreateShopItemForm> = ({ toggleDrawer }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [imgUrl, setImgUrl] = useState<string | null>(null);
+  const isAuth = useAppSelector((state) => selectIsAuth(state));
   const [imgError, setImgError] = useState<boolean>(false);
   const [imageErrorText, setImageErrorText] = useState<string | null>(null);
   const [fileError, setFileError] = useState<boolean>(false);
   const [isOpen, setOpen] = useState<boolean>(false);
+  const [isEdit, setEdit] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [isSnackOpen, setSnackOpen] = useState<boolean>(false);
+  const [snackMessage, setMessage] = useState<string>("");
 
   const onClose = () => {
     setOpen(false);
@@ -34,6 +47,15 @@ const CreateShopItemForm = () => {
       inputRef.current.click();
     }
   };
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/");
+    }
+
+    if (id) {
+      setEdit(true);
+    }
+  }, []);
 
   const onImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -79,20 +101,29 @@ const CreateShopItemForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<TypeShopItem>({
     mode: "onChange",
   });
 
   const onSubmit: SubmitHandler<TypeShopItem> = async (values) => {
+    const params = {
+      ...values,
+      img: imgUrl,
+    };
     try {
-      const params = {
-        ...values,
-        img: imgUrl,
-      };
-      const { data } = await axios.post("/shop-item", params);
-
-      if (data) {
-        navigate(`/shop/shop-item/${data.id}`);
+      if (isEdit) {
+        const { data } = await axios.patch(`/shop-item/${id}`, params);
+        if (data) {
+          setMessage(data?.message);
+          setSnackOpen(true);
+          reset();
+        }
+      } else {
+        const { data } = await axios.post("/shop-item", params);
+        if (data) {
+          navigate(`/shop/shop-item/${data.id}`);
+        }
       }
     } catch (error) {
       console.warn(error);
@@ -101,6 +132,12 @@ const CreateShopItemForm = () => {
 
   return (
     <>
+      <Snack
+        isOpen={isSnackOpen}
+        onClose={() => setSnackOpen(false)}
+        text={snackMessage}
+        type="info"
+      />
       <ModalWindow
         btnStyle="primary"
         btnText="Ok"
@@ -109,8 +146,22 @@ const CreateShopItemForm = () => {
         title={fileError ? "File not image" : imageErrorText}
         type={fileError ? "fileNotImage" : "imageError"}
       />
+      {isEdit && (
+        <div style={{ position: "absolute", top: "10px", left: "10px" }}>
+          <Tooltip title="" onClick={toggleDrawer}>
+            <IconButton>
+              <MenuIcon
+                sx={{ fontSize: "40px", cursor: "pointer", color: "#000" }}
+              />
+            </IconButton>
+          </Tooltip>
+        </div>
+      )}
+
       <div className={styles.container}>
-        <p className={styles.title}>Create new shop item</p>
+        <p className={styles.title}>
+          {isEdit ? "Edit shop item" : "Create new shop item"}
+        </p>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.imgPreview}>
             {imgUrl && (
@@ -128,7 +179,10 @@ const CreateShopItemForm = () => {
               id="filled-size-small"
               variant="filled"
               size="small"
-              {...register("name", { required: true })}
+              {...register(
+                "name",
+                isEdit ? { required: false } : { required: true }
+              )}
             />
             {errors.name && (
               <Alert
@@ -146,7 +200,10 @@ const CreateShopItemForm = () => {
               id="filled-size-small"
               variant="filled"
               size="small"
-              {...register("category", { required: true })}
+              {...register(
+                "category",
+                isEdit ? { required: false } : { required: true }
+              )}
             />
             {errors.category && (
               <Alert
@@ -165,7 +222,10 @@ const CreateShopItemForm = () => {
               variant="filled"
               size="small"
               type="number"
-              {...register("price", { required: true })}
+              {...register(
+                "price",
+                isEdit ? { required: false } : { required: true }
+              )}
             />
             {errors.price && (
               <Alert
@@ -184,7 +244,10 @@ const CreateShopItemForm = () => {
               variant="filled"
               size="small"
               type="number"
-              {...register("raiting", { required: true })}
+              {...register(
+                "raiting",
+                isEdit ? { required: false } : { required: true }
+              )}
             />
             {errors.raiting && (
               <Alert
@@ -203,7 +266,10 @@ const CreateShopItemForm = () => {
               multiline
               rows={4}
               variant="filled"
-              {...register("info", { required: true })}
+              {...register(
+                "info",
+                isEdit ? { required: false } : { required: true }
+              )}
             />
             {errors.info && (
               <Alert
@@ -255,16 +321,21 @@ const CreateShopItemForm = () => {
               id="image"
             />
           </div>
-
-          <Button
-            onClick={() => {
-              isImageSelected();
-            }}
-            type="submit"
-            variant="contained"
-          >
-            Create
-          </Button>
+          {isEdit ? (
+            <Button variant="contained" color="success" type="submit">
+              Save
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                isImageSelected();
+              }}
+              type="submit"
+              variant="contained"
+            >
+              Create
+            </Button>
+          )}
         </form>
       </div>
     </>

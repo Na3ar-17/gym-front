@@ -12,14 +12,28 @@
   box-shadow: 7px 6px 0px 0px rgba(104, 104, 142, 1);
   position: relative;
 
-  .deleteIcon {
-    top: 12px;
-    left: 12px;
-    font-size: 28px;
+  .adminIcons {
     position: absolute;
-    color: red;
+    top: 16px;
+    left: 20px;
+    display: flex;
+    gap: 15px;
+    opacity: 0;
+    visibility: hidden;
     transition: all 0.3s;
-    cursor: pointer;
+
+    .deleteIcon {
+      font-size: 28px;
+      color: red;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .editIcon {
+      color: green;
+      font-size: 28px;
+      cursor: pointer;
+    }
   }
 
   .content {
@@ -37,7 +51,7 @@
       img {
         max-width: 98%;
         display: block;
-        margin: 0 auto;
+        margin: 12px auto;
         transition: all 0.4s ease-in-out;
         cursor: pointer;
       }
@@ -77,6 +91,11 @@
       img {
         transform: scale(1.04);
       }
+    }
+
+    .adminIcons {
+      opacity: 1;
+      visibility: visible;
     }
   }
 }

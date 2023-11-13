@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import styles from "./ShopCard.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { IShopCard } from "../../Interfaces/ShopCard";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
   fetchAddMyGoods,
@@ -20,6 +20,7 @@ import {
   selectIsAdmin,
 } from "../../Redux/Slices/adminSlice";
 import { fetchShopItems } from "../../Redux/Slices/ShopItemsSlice";
+import EditIcon from "@mui/icons-material/Edit";
 
 const ShopCard: FC<IShopCard> = ({ img, category, name, price, id }) => {
   const isAdmin = useAppSelector((state) => selectIsAdmin(state));
@@ -32,6 +33,7 @@ const ShopCard: FC<IShopCard> = ({ img, category, name, price, id }) => {
   const userId = data ? data.id : null;
   const { myGoods } = useAppSelector((state) => state.myGoods);
   const isAuth = useAppSelector((state) => selectIsAuth(state));
+  const navigate = useNavigate();
 
   const myGoodsArray = Object.values(myGoods);
   const isProductInMyGoods = myGoodsArray.some((item) => item.id === id);
@@ -71,16 +73,26 @@ const ShopCard: FC<IShopCard> = ({ img, category, name, price, id }) => {
     });
   };
 
+  const editShopItem = (productId: number) => {
+    navigate(`/edit/${productId}`);
+  };
+
   return (
     <>
       <div className={styles.card}>
         {isAdmin && (
-          <BackspaceOutlinedIcon
-            onClick={() => {
-              deleteShopItem(id);
-            }}
-            className={styles.deleteIcon}
-          />
+          <div className={styles.adminIcons}>
+            <BackspaceOutlinedIcon
+              onClick={() => {
+                deleteShopItem(id);
+              }}
+              className={styles.deleteIcon}
+            />
+            <EditIcon
+              onClick={() => editShopItem(id)}
+              className={styles.editIcon}
+            />
+          </div>
         )}
         <div className={styles.content}>
           <div className={styles.image}>

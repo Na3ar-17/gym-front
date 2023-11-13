@@ -1,6 +1,7 @@
-import { useEffect, FC, useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Button, IconButton, TextField, Tooltip } from "@mui/material";
+import { FC, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
   clearUserData,
   fetchUsers,
@@ -8,17 +9,15 @@ import {
   selectIsAdmin,
   setSearchUser,
 } from "../../Redux/Slices/adminSlice";
-import { Button, TextField } from "@mui/material";
-import { IconButton, Tooltip } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
-import styles from "./Admin.module.scss";
-import UserData from "../../Components/UserData/UserData";
-import Loader from "../../Components/Loader/Loader";
 import AvatarComponent from "../../Components/Avatar/AvatarComponent";
-import ShopCard from "../../Components/ShopCard/ShopCard";
-import { imgLink } from "../../links";
 import CreateShopItemForm from "../../Components/CreateShopItemForm/CreateShopItemForm";
+import Loader from "../../Components/Loader/Loader";
+import ShopCard from "../../Components/ShopCard/ShopCard";
+import UserData from "../../Components/UserData/UserData";
+import { imgLink } from "../../links";
+import styles from "./Admin.module.scss";
 interface IAdmin {
   toggleDrawer: () => void;
 }

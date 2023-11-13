@@ -19,6 +19,7 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 import AdminLogin from "./Pages/AdminLogin/AdminLogin";
 import { fetchGetAdmin } from "./Redux/Slices/adminSlice";
 import Admin from "./Pages/Admin/Admin";
+import CreateShopItemForm from "./Components/CreateShopItemForm/CreateShopItemForm";
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -77,6 +78,10 @@ const App: FC = () => {
           <Route
             path="/admin"
             element={<Admin toggleDrawer={toggleDrawer} />}
+          />
+          <Route
+            path="/edit/:id"
+            element={<CreateShopItemForm toggleDrawer={toggleDrawer} />}
           />
         </Routes>
       </BrowserRouter>
